@@ -71,10 +71,11 @@ while replay[0] == "y"
     num_guesses += 1
   end
 
+  # ELAPSED GAME TIME
   end_time = Time.now
-
-  # REPLAY QUERY
   puts  "Game time: " + (end_time - start_time).to_s + " seconds"
+  
+  # REPLAY QUERY
   puts "Do you want to play again? (y or n)"
   replay = gets
   replay = replay.chomp
