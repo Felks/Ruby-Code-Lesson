@@ -3,8 +3,7 @@ MIN_NUMBER = 1
 GUESS_NUMBER = 5
 
 puts "Hello player. What is your name?"
-name = gets
-name = name.chomp
+name = gets.chomp
 
 puts
 puts "Hello #{name}. This is a guessing game."
@@ -13,33 +12,31 @@ puts "Everytime you guess wrong, another number will be chosen."
 puts "If you need a clue, just type clue."
 puts
 
-# DIFFICULTY
-puts "Please select the difficulty: e for easy, m for medium, h for hard."
-puts "(Default will be easy)"
-difficulty = gets
-difficulty = difficulty.chomp
-difficulty = difficulty.downcase.scan(/^./)
-
-if difficulty[0] == "m"
-  max_number = MAX_NUMBER * 100
-  max_guesses = GUESS_NUMBER * 2
-elsif difficulty[0] == "h"
-  max_number = MAX_NUMBER * 10
-  max_guesses = GUESS_NUMBER * 3
-else
-  max_number = 10
-  max_guesses = GUESS_NUMBER
-end
-
-computers_number = rand(max_number - MIN_NUMBER + 1) + MIN_NUMBER
-puts "I will be guessing a number between #{MIN_NUMBER} and #{max_number}."
-puts "You will be limited to #{max_guesses} guesses."
-
 replay = "y"
 game = 0
 
 # GAME LOOP
 while replay[0] == "y"
+  # DIFFICULTY
+  puts "Please select the difficulty: e for easy, m for medium, h for hard."
+  puts "(Default will be easy)"
+  difficulty = gets.chomp.downcase
+
+  if difficulty[0] == "m"
+    max_number = MAX_NUMBER * 10
+    max_guesses = GUESS_NUMBER * 2
+  elsif difficulty[0] == "h"
+    max_number = MAX_NUMBER * 100
+    max_guesses = GUESS_NUMBER * 3
+  else
+    max_number = 10
+    max_guesses = GUESS_NUMBER
+  end
+
+  computers_number = rand(max_number - MIN_NUMBER + 1) + MIN_NUMBER
+  puts "I will be guessing a number between #{MIN_NUMBER} and #{max_number}."
+  puts "You will be limited to #{max_guesses} guesses."
+  
   num_guesses = 1
   start_time = Time.now
   
@@ -77,9 +74,7 @@ while replay[0] == "y"
   
   # REPLAY QUERY
   puts "Do you want to play again? (y or n)"
-  replay = gets
-  replay = replay.chomp
-  replay = replay.downcase.scan(/^./)
+  replay = gets.chomp.downcase
 end
 
 puts
