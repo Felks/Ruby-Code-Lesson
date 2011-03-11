@@ -2,28 +2,21 @@ puts "This program accepts two lists of words from users."
 puts "List all words on a single line and delimit them with commas."
 
 puts "First List:"
-first_list = gets
+first_list = gets.chomp
 
 puts "Second List:"
-second_list = gets
+second_list = gets.chomp
 
-first_word_array = first_list.chomp.split(",")
-second_word_array = second_list.chomp.split(",")
+first_word_array = first_list.split(",").collect { |word| word.gsub(" ", "").downcase }
+second_word_array = second_list.split(",").collect { |word| word.gsub(" ", "").downcase }
 print_array = []
 
-p first_word_array
-p second_word_array
-
-i = 0
-while i < first_word_array.length
-  j = 0
-  while j < second_word_array.length
+first_word_array.length.times do |i|
+  second_word_array.length.times do |j|
     if first_word_array[i] != second_word_array[j]
-      print_array << (first_word_array[i].gsub(" ", "") + second_word_array[j].gsub(" ", "")).downcase
+      print_array << first_word_array[i] + second_word_array[j]
     end
-    j += 1
   end
-  i += 1
 end
 
 print_array.each do |i|
