@@ -11,13 +11,9 @@ first_word_array = first_list.split(",").collect { |word| word.gsub(" ", "").dow
 second_word_array = second_list.split(",").collect { |word| word.gsub(" ", "").downcase }
 print_array = []
 
-first_word_array.length.times do |i|
-  second_word_array.length.times do |j|
-    if first_word_array[i] != second_word_array[j]
-      print_array << first_word_array[i] + second_word_array[j]
-    end
-  end
-end
+print_array = first_word_array.product(second_word_array)
+print_array.delete_if { |list| list[0] == list[1] }
+print_array = print_array.map { |list| list.join }
 
 print_array.each do |i|
   puts i

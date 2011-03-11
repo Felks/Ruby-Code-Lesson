@@ -4,8 +4,8 @@ array3 = []
 
 # You need to write some code in this part
 # to make the program output "Success"
-array1.collect { |num| num.to_s }.zip(array2).each { |list| list.each { |ele| array3.push(ele) } }
-  
+array3 = array1.collect { |num| num.to_s }.zip(array2).flatten
+
 if array3 == ['1', 'peter', '2', 'piper', '3', 'picked', '4', 'peppers']
   puts "Success"
 else
